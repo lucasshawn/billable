@@ -3,7 +3,7 @@
 # Declare variables to be passed into your templates.
 apps:
 - name: testApp1
-  namespace: nsTestApps
+  namespace: nstestapps1
   project: default
   source:
     repoURL: https://github.com/lucasshawn/billable.git
@@ -11,7 +11,7 @@ apps:
     path: src/helm/charts/testApp1
   destination:
     server: https://kubernetes.default.svc
-    namespace: nsTestApps
+    namespace: nstestapps1
   syncPolicy:
     automated:
       prune: true

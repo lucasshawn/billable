@@ -1,21 +1,22 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: all_apps
+  name: applications
   namespace: argo
 spec:
   project: default
   source:
     repoURL: https://github.com/lucasshawn/billable.git
     targetRevision: HEAD
-    path: /src/argo/all_apps
+    path: src/helm/charts/argo_applications
   destination:
     server: https://kubernetes.default.svc
     namespace: argo
-  syncPolic:
-    automated: true
-  metadata:
-    annotations:
-      argocd.argoproj.io/managedNamespaceMetadata: "labels,annotations"
-    finalizers:
-    - resources-finalizer.argocd.argoproj.io
+  syncPolicy:
+    automated:
+      prune: true
+      allowEmpty: true
+      selfHeal: false
+    syncOptions:
+    - CreateNamespace=true
+---
