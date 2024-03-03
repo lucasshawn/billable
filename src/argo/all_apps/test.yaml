@@ -1,14 +1,20 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: test
+  name: applications
   namespace: argo
 spec:
   project: default
   source:
     repoURL: https://github.com/lucasshawn/billable.git
     targetRevision: HEAD
-    path: /src/helm/test
+    path: /src/helm/charts/argo_applications
   destination:
     server: https://kubernetes.default.svc
-    namespace: test
+    namespace: argo
+  syncPolicy:
+    automated:
+      prune: true
+      allowEmpty: true
+      selfHeal: false
+---
