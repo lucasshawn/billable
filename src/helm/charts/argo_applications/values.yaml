@@ -8,7 +8,7 @@ apps:
   source:
     repoURL: https://github.com/lucasshawn/billable.git
     targetRevision: HEAD
-    path: src/helm/charts/test
+    path: src/helm/charts/testApp1
   destination:
     server: https://kubernetes.default.svc
     namespace: nsTestApp1
