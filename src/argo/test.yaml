@@ -1,0 +1,14 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: test
+  namespace: argo
+spec:
+  project: feature/first_chart
+  source:
+    repoURL: https://github.com/lucasshawn/billable.git
+    targetRevision: HEAD
+    path: https://github.com/lucasshawn/billable/tree/feature/first_chart/src/helm/test
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: test
