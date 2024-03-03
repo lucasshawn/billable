@@ -19,8 +19,6 @@ spec:
 {{ toYaml .syncPolicy | indent 4}}
 {{- end }}
   metadata:
-    annotations:
-      argocd.argoproj.io/managedNamespaceMetadata: "labels,annotations"
     finalizers:
     - resources-finalizer.argocd.argoproj.io
 ---
