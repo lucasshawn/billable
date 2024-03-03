@@ -1,0 +1,16 @@
+# Default values for argo_applications.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+apps:
+- name: testApp1
+  namespace: nsTestApp1
+  project: default
+  source:
+    repoURL: https://github.com/lucasshawn/billable.git
+    targetRevision: HEAD
+    path: /src/helm/charts/test
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: nsTestApp1
+  syncPolicy:
+    automated:  true

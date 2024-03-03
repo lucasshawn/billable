@@ -1,0 +1,27 @@
+{{ $root := . }}
+{{- range .Values.apps }}
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: {{ .name }}
+  namespace: {{ .namespace}}
+spec:
+  project: default
+  source:
+    repoURL: {{ .source.repoUrl }}
+    targetRevision: {{ .source.targetRevision }}
+    path: {{ .source.path  }}
+  destination:
+    server: {{ .destination.server }}
+    namespace: {{ .destination.namespace }}
+{{- if .syncPolicy }}
+  syncPolicy:
+{{ toYaml .syncPolicy | indent 4}}
+{{- end }}
+  metadata:
+    annotations:
+      argocd.argoproj.io/managedNamespaceMetadata: "labels,annotations"
+    finalizers:
+    - resources-finalizer.argocd.argoproj.io
+---
+{{- end }}
